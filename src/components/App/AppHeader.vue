@@ -14,9 +14,4 @@ export default {
   },
 };
 </script>
-<style scoped>
-.header {
-  color: #808080;
-  font-size: 20px;
-}
-</style>
+<style scoped></style>

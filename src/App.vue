@@ -15,29 +15,3 @@ export default {
   components: { TheNavigation },
 };
 </script>
-<style lang="scss" scoped>
-.main-content {
-  margin: 32px;
-  width: 85%;
-  margin-left: auto;
-  margin-right: auto;
-  // display: flex;
-  // justify-content: center;
-  min-width: 1200px;
-  margin-top: 96px;
-  padding-bottom: 96px;
-}
-.nav {
-  width: 100%;
-  height: 60px;
-  margin-bottom: 32px;
-  border-bottom: 2px solid orange;
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  top: 0;
-  overflow: hidden;
-  z-index: 10000;
-  background: white;
-}
-</style>

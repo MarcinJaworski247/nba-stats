@@ -1,7 +1,6 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import store from "./store";
 
 // import ApexCharts library
 import VueApexCharts from "vue-apexcharts";
@@ -13,10 +12,16 @@ Vue.component("apexchart", VueApexCharts);
 import "@fortawesome/fontawesome-free/css/all.css";
 import "@fortawesome/fontawesome-free/js/all.js";
 
+// devextreme styles
+import "devextreme/dist/css/dx.common.css";
+import "devextreme/dist/css/dx.light.css";
+
+// my styles
+import "@/assets/styles/main.scss";
+
 Vue.config.productionTip = false;
 
 new Vue({
   router,
-  store,
   render: (h) => h(App),
 }).$mount("#app");

@@ -5,9 +5,8 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: "/radar",
-    name: "radar",
-    component: () => import("../views/RadarChart/Index.vue"),
+    path: "/",
+    redirect: "/court",
   },
   {
     path: "/court",

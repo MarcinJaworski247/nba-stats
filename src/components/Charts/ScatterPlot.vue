@@ -10,38 +10,19 @@
         v-if="!isLoading && series.length === 4"
       />
     </div>
-    <!-- <div @click="dataVisible = !dataVisible" class="subtitle mt-3">
-      <span class="mr-2">Dane</span>
-      <i class="fas fa-chevron-down"></i>
-    </div>
-    <div v-if="dataVisible">
-      <data-grid :headers="headers" :data="data" />
-    </div> -->
-    <div class="subtitle mt-3">
-      <span class="mr-2">Satystyki opisowe</span>
-    </div>
-    <div>
-      <data-grid :headers="statsHeaders" :data="statsData" />
-    </div>
   </div>
 </template>
 <script>
 // service
 import { getMinsByAgeRange } from "@/services/dataService";
-// components
-import DataGrid from "@/components/App/DataGrid";
 
 // simple satistics
 import * as ss from "simple-statistics";
 
 export default {
   name: "ScatterPlot",
-  components: {
-    DataGrid,
-  },
   data() {
     return {
-      isLoading: false,
       series: [],
       chartOptions: {
         chart: {
@@ -111,7 +92,6 @@ export default {
     };
   },
   mounted() {
-    // this.isLoading = true;
     const ranges = getMinsByAgeRange();
 
     this.series.push(ranges.range1);
@@ -216,28 +196,6 @@ export default {
       ppgQ2,
       Number(ppgIqr).toFixed(2),
     ]);
-
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 1000);
   },
 };
 </script>
-<style scoped>
-.loader {
-  margin-top: 64px;
-}
-.subtitle {
-  color: #808080;
-}
-.mr-2 {
-  margin-right: 16px;
-}
-.mt-3 {
-  margin-top: 24px;
-}
-.chart-wrapper {
-  display: flex;
-  justify-content: center;
-}
-</style>

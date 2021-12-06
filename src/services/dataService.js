@@ -145,3 +145,60 @@ export function getLeagueLeaders() {
 
   return { pg, sg, sf, pf, c };
 }
+
+export function getAllPlayersPpg() {
+  let res = [];
+  for (const item of data) {
+    res.push(item.PTS);
+  }
+  return res;
+}
+
+export function getTeamsWins() {
+  let res = [];
+  for (const item of standings) {
+    res.push(item.properties.value);
+  }
+  return res;
+}
+
+export function getAllPlayersMpg() {
+  let res = [];
+  for (const item of data) {
+    res.push(item.MP);
+  }
+  return res;
+}
+
+export function getAllPlayersAge() {
+  let res = [];
+  for (const item of data) {
+    res.push(item.Age);
+  }
+  return res;
+}
+
+export function getAllPlayersPositions() {
+  let res = [];
+  for (const item of data) {
+    let pos;
+    if (item.Pos === "PG") pos = 1;
+    if (item.Pos === "SG" || item.Pos === "G") pos = 2;
+    if (item.Pos === "SF" || item.Pos === "SF-PF") pos = 3;
+    if (item.Pos === "PF" || item.Pos === "F") pos = 4;
+    if (item.Pos === "C" || item.Pos === "F-C") pos = 5;
+    res.push(pos);
+  }
+  return res;
+}
+
+export function getAllTeamsConf() {
+  let res = [];
+  for (const item of standings) {
+    let conf;
+    if (item.properties.conference === "wschodnia") conf = 0;
+    if (item.properties.conference === "zachodnia") conf = 1;
+    res.push(conf);
+  }
+  return res;
+}

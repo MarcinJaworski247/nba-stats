@@ -46,33 +46,6 @@
         <dx-tooltip :enabled="true" :customize-tooltip="customizeTooltip" />
       </dx-vector-map>
     </div>
-    <div style="margin-top: 64px" class="row">
-      <div class="col-50">
-        <data-grid
-          :headers="headers"
-          :data="data"
-          :wide="true"
-          title="Wygrane drużyn i przynależność do konferencji"
-        />
-      </div>
-      <div class="col-50">
-        <dx-chart
-          :data-source="chartData"
-          v-if="chartData.length"
-          title="Ilość wygranych według konferencji drużyny"
-        >
-          <dx-series
-            argument-field="conference"
-            value-field="wins"
-            type="bar"
-            color="orange"
-          >
-            <dx-label :visible="true"> </dx-label>
-          </dx-series>
-          <dx-chart-legend :visible="false" />
-        </dx-chart>
-      </div>
-    </div>
   </div>
 </template>
 <script>
@@ -87,17 +60,7 @@ import {
   DxSource,
 } from "devextreme-vue/vector-map";
 
-import {
-  DxChart,
-  DxSeries,
-  DxLegend as DxChartLegend,
-  DxLabel,
-} from "devextreme-vue/chart";
-// service
 import { getTeamWins } from "@/services/dataService";
-
-// components
-import DataGrid from "@/components/App/DataGrid";
 
 export default {
   name: "Map",
@@ -108,11 +71,6 @@ export default {
     DxSize,
     DxLegend,
     DxSource,
-    DataGrid,
-    DxChart,
-    DxSeries,
-    DxChartLegend,
-    DxLabel,
   },
   data() {
     return {
@@ -755,8 +713,6 @@ export default {
       return 0;
     });
 
-    console.log(this.data);
-
     let eastWins = 0;
     let westWins = 0;
     for (const item of this.data) {
@@ -767,7 +723,7 @@ export default {
         westWins += item[2];
       }
     }
-    console.log(this.data, eastWins, westWins);
+
     this.chartData.push(
       { conference: "Konferencja wschodnia", wins: eastWins },
       { conference: "Kofnerecja zachodnia", wins: westWins }
@@ -775,24 +731,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.chart-wrapper {
-  display: flex;
-  justify-content: center;
-}
-.row {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  max-height: 200px;
-}
-
-.col-50 {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-</style>

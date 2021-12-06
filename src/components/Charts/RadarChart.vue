@@ -78,8 +78,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.loader {
-  margin-top: 64px;
-}
-</style>

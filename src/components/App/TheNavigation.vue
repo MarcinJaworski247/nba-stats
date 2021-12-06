@@ -19,11 +19,4 @@ a {
     text-decoration: underline;
   }
 }
-.routes {
-  width: 67%;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 </style>

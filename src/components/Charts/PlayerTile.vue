@@ -32,38 +32,3 @@ export default {
   },
 };
 </script>
-<style scoped>
-.tile-wrapper {
-  width: 120px;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-}
-.name {
-  color: #808080;
-}
-.stats {
-  font-size: 0.8rem;
-}
-.tile {
-  border: 2px solid #808080;
-  border-radius: 50%;
-  height: 120px;
-  width: 120px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #fff;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-.tile:hover {
-  border-color: orange;
-}
-.avatar {
-  border-radius: 50%;
-  max-width: 100%;
-  max-height: 100%;
-}
-</style>
