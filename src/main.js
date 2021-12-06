@@ -9,6 +9,10 @@ Vue.use(VueApexCharts);
 // import ApexChart component globally
 Vue.component("apexchart", VueApexCharts);
 
+//FontAwesome
+import "@fortawesome/fontawesome-free/css/all.css";
+import "@fortawesome/fontawesome-free/js/all.js";
+
 Vue.config.productionTip = false;
 
 new Vue({

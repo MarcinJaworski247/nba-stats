@@ -1,29 +1,78 @@
 <template>
   <div>
-    <dot-loader class="loader" v-if="isLoading" />
-    <dx-vector-map :bounds="bounds" v-if="!isLoading">
-      <dx-size :height="600" :width="1100" />
-      <!-- USA map -->
-      <dx-layer :data-source="usa" border-color="orange" color="#ffcd6f" />
-      <!-- NBA teams Logos -->
-      <dx-layer
-        :data-source="teamsData"
-        data-field="url"
-        element-type="image"
-        type="marker"
-        :size="91"
-      />
-      <!-- Bubble Markers -->
-      <dx-layer
-        :data-source="markers"
-        :opacity="0.8"
-        name="bubbles"
-        element-type="bubble"
-        data-field="value"
-        v-if="markers.features && markers.features.length"
-      />
-      <dx-tooltip :enabled="true" :customize-tooltip="customizeTooltip" />
-    </dx-vector-map>
+    <div class="chart-wrapper">
+      <dx-vector-map :bounds="bounds" v-if="markers.features.length">
+        <dx-size :height="600" :width="1400" />
+        <!-- USA map -->
+        <dx-layer
+          :data-source="usa"
+          border-color="white"
+          name="areas"
+          color-grouping-field="population"
+          :customize="customizeLayer"
+        />
+
+        <!-- NBA teams Logos -->
+        <dx-layer
+          :data-source="teamsData"
+          data-field="url"
+          element-type="image"
+          type="marker"
+          :size="91"
+        />
+        <!-- Bubble Markers -->
+        <dx-layer
+          :data-source="markers"
+          :opacity="0.8"
+          :min-size="10"
+          :max-size="60"
+          name="bubbles"
+          element-type="bubble"
+          data-field="value"
+          :size-groups="sizeGroups"
+          v-if="markers.features && markers.features.length"
+        />
+        <dx-legend
+          :customize-items="customizeItems"
+          :customize-text="customizeText"
+          marker-shape="circle"
+          horizontalAlignment="right"
+          vertical-alignment="bottom"
+          hover-mode="excludePoints"
+          position="outside"
+        >
+          <dx-source layer="bubbles" grouping="size" />
+        </dx-legend>
+        <dx-tooltip :enabled="true" :customize-tooltip="customizeTooltip" />
+      </dx-vector-map>
+    </div>
+    <div style="margin-top: 64px" class="row">
+      <div class="col-50">
+        <data-grid
+          :headers="headers"
+          :data="data"
+          :wide="true"
+          title="Wygrane drużyn i przynależność do konferencji"
+        />
+      </div>
+      <div class="col-50">
+        <dx-chart
+          :data-source="chartData"
+          v-if="chartData.length"
+          title="Ilość wygranych według konferencji drużyny"
+        >
+          <dx-series
+            argument-field="conference"
+            value-field="wins"
+            type="bar"
+            color="orange"
+          >
+            <dx-label :visible="true"> </dx-label>
+          </dx-series>
+          <dx-chart-legend :visible="false" />
+        </dx-chart>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -34,13 +83,21 @@ import {
   DxLayer,
   DxTooltip,
   DxSize,
+  DxLegend,
+  DxSource,
 } from "devextreme-vue/vector-map";
 
+import {
+  DxChart,
+  DxSeries,
+  DxLegend as DxChartLegend,
+  DxLabel,
+} from "devextreme-vue/chart";
 // service
-import { getStatsByTeam } from "@/services/dataService";
+import { getTeamWins } from "@/services/dataService";
 
 // components
-import DotLoader from "@/components/App/DotLoader";
+import DataGrid from "@/components/App/DataGrid";
 
 export default {
   name: "Map",
@@ -48,14 +105,22 @@ export default {
     DxVectorMap,
     DxTooltip,
     DxLayer,
-    DotLoader,
     DxSize,
+    DxLegend,
+    DxSource,
+    DataGrid,
+    DxChart,
+    DxSeries,
+    DxChartLegend,
+    DxLabel,
   },
   data() {
     return {
-      isLoading: false,
       usa: mapsData.usa,
       bounds: [-94, 50, -100, 23],
+      headers: ["Drużyna", "Konferencja", "Ilość wygranych"],
+      data: [],
+      chartData: [],
       teamsData: {
         type: "FeatureCollection",
         features: [
@@ -384,6 +449,7 @@ export default {
         type: "FeatureCollection",
         features: [],
       },
+      sizeGroups: [15, 25, 35, 45, 55, 65],
     };
   },
   methods: {
@@ -393,18 +459,340 @@ export default {
       }
       return null;
     },
+    customizeText({ index }) {
+      return [
+        "15 to 25 wins",
+        "25 to 35 wins",
+        "35 to 45 wins",
+        "45 to 55 wins",
+        "55 to 65 wins",
+      ][index];
+    },
+    customizeItems(items) {
+      return items.reverse();
+    },
+    customizeLayer(elements) {
+      const east = "#7ad9ff";
+      const west = "#ff7a7a";
+      elements.forEach((element) => {
+        if (element.index === 0) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 1) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 2) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 3) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 4) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 5) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 5) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 6) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 7) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 8) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 9) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 10) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 11) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 12) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 13) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 14) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 15) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 16) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 17) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 18) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 19) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 20) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 21) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 22) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 23) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 24) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 25) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 26) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 27) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 28) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 29) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 30) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 31) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 32) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 33) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 34) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 35) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 36) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 37) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 38) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 39) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 40) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 41) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 42) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 43) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 44) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 45) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 46) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 47) {
+          element.applySettings({
+            color: west,
+          });
+        }
+        if (element.index === 48) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 49) {
+          element.applySettings({
+            color: east,
+          });
+        }
+        if (element.index === 50) {
+          element.applySettings({
+            color: west,
+          });
+        }
+      });
+    },
   },
   mounted() {
-    this.isLoading = true;
-    this.markers.features = getStatsByTeam();
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 1000);
+    this.markers.features = getTeamWins();
+
+    for (const item of this.markers.features) {
+      this.data.push([
+        item.properties.name,
+        item.properties.conference,
+        item.properties.value,
+      ]);
+    }
+
+    this.data.sort((a, b) => {
+      if (a[2] < b[2]) return -1;
+      if (a[2] > b[2]) return 1;
+      return 0;
+    });
+
+    console.log(this.data);
+
+    let eastWins = 0;
+    let westWins = 0;
+    for (const item of this.data) {
+      if (item[1] === "wschodnia") {
+        eastWins += item[2];
+      }
+      if (item[1] === "zachodnia") {
+        westWins += item[2];
+      }
+    }
+    console.log(this.data, eastWins, westWins);
+    this.chartData.push(
+      { conference: "Konferencja wschodnia", wins: eastWins },
+      { conference: "Kofnerecja zachodnia", wins: westWins }
+    );
   },
 };
 </script>
 <style scoped>
-.loader {
-  margin-top: 64px;
+.chart-wrapper {
+  display: flex;
+  justify-content: center;
+}
+.row {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  max-height: 200px;
+}
+
+.col-50 {
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

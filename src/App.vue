@@ -18,13 +18,14 @@ export default {
 <style lang="scss" scoped>
 .main-content {
   margin: 32px;
-  width: 75%;
+  width: 85%;
   margin-left: auto;
   margin-right: auto;
   // display: flex;
   // justify-content: center;
   min-width: 1200px;
-  margin-top: 80px;
+  margin-top: 96px;
+  padding-bottom: 96px;
 }
 .nav {
   width: 100%;
@@ -36,5 +37,7 @@ export default {
   position: fixed;
   top: 0;
   overflow: hidden;
+  z-index: 10000;
+  background: white;
 }
 </style>

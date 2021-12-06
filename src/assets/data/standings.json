@@ -1,0 +1,408 @@
+[
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-84.423058, 33.763191]
+    },
+    "properties": {
+      "text": "ATL",
+      "name": "Atlanta Hawks",
+      "conference": "wschodnia",
+      "value": 41,
+      "tooltip": "Atlanta Hawks - 41 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-70.016251, 44.904758]
+    },
+    "properties": {
+      "text": "BOS",
+      "name": "Boston Celtics",
+      "conference": "wschodnia",
+      "value": 36,
+      "tooltip": "Boston Celtics - 36 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-74.632408, 39.584151]
+    },
+    "properties": {
+      "text": "BRK",
+      "name": "Brooklyn Nets",
+      "conference": "wschodnia",
+      "value": 48,
+      "tooltip": "Brooklyn Nets - 48 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-87.932408, 41.484151]
+    },
+    "properties": {
+      "text": "CHI",
+      "name": "Chicago Bulls",
+      "conference": "wschodnia",
+      "value": 31,
+      "tooltip": "Chicago Bulls - 31 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-79.823058, 34.763191]
+    },
+    "properties": {
+      "text": "CHO",
+      "name": "Charlotte Hornets",
+      "conference": "wschodnia",
+      "value": 33,
+      "tooltip": "Charlotte Hornets - 33 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-81.632408, 40.584151]
+    },
+    "properties": {
+      "text": "CLE",
+      "name": "Cleveland Cavaliers",
+      "conference": "wschodnia",
+      "value": 22,
+      "tooltip": "Cleveland Cavaliers - 22 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-98.245003, 32.653501]
+    },
+    "properties": {
+      "text": "DAL",
+      "name": "Dallas Mavericks",
+      "conference": "zachodnia",
+      "value": 41,
+      "tooltip": "Dallas Mavericks - 42 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-104.991997, 39.740002]
+    },
+    "properties": {
+      "text": "DEN",
+      "name": "Denver Nuggets",
+      "conference": "zachodnia",
+      "value": 47,
+      "tooltip": "Denver Nuggets - 47 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-83.632408, 43.984151]
+    },
+    "properties": {
+      "text": "DET",
+      "name": "Detroit Pistons",
+      "conference": "wschodnia",
+      "value": 20,
+      "tooltip": "Detroit Pistons - 20 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-120.245003, 38.053501]
+    },
+    "properties": {
+      "text": "GSW",
+      "name": "Golden State Warriors",
+      "conference": "zachodnia",
+      "value": 39,
+      "tooltip": "Golden State Warriors - 39 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-95.381889, 29.775419]
+    },
+    "properties": {
+      "text": "HOU",
+      "name": "Houston Rockets",
+      "conference": "zachodnia",
+      "value": 17,
+      "tooltip": "Houston Rockets - 17 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-84.823058, 38.263191]
+    },
+    "properties": {
+      "text": "IND",
+      "name": "Indiana Pacers",
+      "conference": "wschodnia",
+      "value": 34,
+      "tooltip": "Indiana Pacers - 34 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-116.245003, 32.053501]
+    },
+    "properties": {
+      "text": "LAC",
+      "name": "Los Angeles Clippers",
+      "conference": "zachodnia",
+      "value": 47,
+      "tooltip": "Los Angeles Clippers - 47 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-118.245003, 35.053501]
+    },
+    "properties": {
+      "text": "LAL",
+      "name": "Los Angeles Lakers",
+      "conference": "zachodnia",
+      "value": 42,
+      "tooltip": "Los Angeles Lakers - 42 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-88.823058, 35.763191]
+    },
+    "properties": {
+      "text": "MEM",
+      "name": "Memphis Grizzlies",
+      "conference": "wschodnia",
+      "value": 38,
+      "tooltip": "Memphis Grizzlies - 38 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-80.823058, 26.263191]
+    },
+    "properties": {
+      "text": "MIA",
+      "name": "Miami Heat",
+      "conference": "wschodnia",
+      "value": 40,
+      "tooltip": "Miami Heat - 40 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-89.632408, 45.484151]
+    },
+    "properties": {
+      "text": "MIL",
+      "name": "Milwaukee Bucks",
+      "conference": "wschodnia",
+      "value": 46,
+      "tooltip": "Milwaukee Bucks - 46 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-94.632408, 47.884151]
+    },
+    "properties": {
+      "text": "MIN",
+      "name": "Minesota Timberwolves",
+      "conference": "zachodnia",
+      "value": 23,
+      "tooltip": "Minesota Timberwolves - 23 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-89.823058, 29.763191]
+    },
+    "properties": {
+      "text": "NOP",
+      "name": "New Orleans Pelicans",
+      "conference": "zachodnia",
+      "value": 31,
+      "tooltip": "New Orleans Pelicans - 31 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-74.016251, 41.904758]
+    },
+    "properties": {
+      "text": "NYK",
+      "name": "New York Knicks",
+      "conference": "wschodnia",
+      "value": 41,
+      "tooltip": "New York Knicks - 41 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-97.514839, 35.466179]
+    },
+    "properties": {
+      "text": "OKC",
+      "name": "Oklahoma City Thunder",
+      "conference": "zachodnia",
+      "value": 22,
+      "tooltip": "Oklahoma City Thunder - 22 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-81.823058, 29.763191]
+    },
+    "properties": {
+      "text": "ORL",
+      "name": "Orlando Magic",
+      "conference": "wschodnia",
+      "value": 21,
+      "tooltip": "Orlando Magic - 21 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-77.632408, 41.584151]
+    },
+    "properties": {
+      "text": "PHI",
+      "name": "Philadelphia 76ers",
+      "conference": "wschodnia",
+      "value": 49,
+      "tooltip": "Philadelphia 76ers - 49 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-111.245003, 34.653501]
+    },
+    "properties": {
+      "text": "PHO",
+      "name": "Phoenix Suns",
+      "conference": "zachodnia",
+      "value": 51,
+      "tooltip": "Phoenix Suns - 51 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.245003, 44.653501]
+    },
+    "properties": {
+      "text": "POR",
+      "name": "Portland Trail Blazers",
+      "conference": "zachodnia",
+      "value": 42,
+      "tooltip": "Portland Trail Blazers - 42 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-122.245003, 41.453501]
+    },
+    "properties": {
+      "text": "SAC",
+      "name": "Sacramento Kings",
+      "conference": "zachodnia",
+      "value": 31,
+      "tooltip": "Sacramento Kings - 31 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-102.245003, 30.653501]
+    },
+    "properties": {
+      "text": "SAS",
+      "name": "San Antonio Spurs",
+      "conference": "zachodnia",
+      "value": 33,
+      "tooltip": "San Antonio Spurs - 33 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-112.245003, 40.653501]
+    },
+    "properties": {
+      "text": "UTA",
+      "name": "Utah Jazz",
+      "conference": "zachodnia",
+      "value": 52,
+      "tooltip": "Utah Jazz - 52 wins"
+    }
+  },
+  {
+    "Type": "Feature",
+    "geometry": {
+      "type": "Point",
+      "coordinates": [-77.016251, 38.904758]
+    },
+    "properties": {
+      "text": "WAS",
+      "name": "Washington Wizards",
+      "conference": "wschodnia",
+      "value": 34,
+      "tooltip": "Washington Wizards - 34 wins"
+    }
+  }
+]

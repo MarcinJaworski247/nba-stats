@@ -1,7 +1,7 @@
 <template>
   <div>
-    <app-header text="Najlepsi strzelcy wg. pozycji" />
-    <div class="chart-wrapper">
+    <app-header text="Najlepsi strzelcy oraz ligowe średnie według pozycji " />
+    <div class="mt-5">
       <court />
     </div>
   </div>
@@ -19,8 +19,7 @@ export default {
 };
 </script>
 <style scoped>
-.chart-wrapper {
-  display: flex;
-  justify-content: center;
+.mt-5 {
+  margin-top: 40px;
 }
 </style>

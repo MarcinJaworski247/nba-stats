@@ -1,6 +1,6 @@
 <template>
   <div class="routes">
-    <router-link :to="{ name: `radar` }">Radar chart</router-link>
+    <!-- <router-link :to="{ name: `radar` }">Radar chart</router-link> -->
     <router-link :to="{ name: `court` }">Court</router-link>
     <router-link :to="{ name: `map` }">Map</router-link>
     <router-link :to="{ name: `scatter` }">Scatter plot</router-link>
