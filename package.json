@@ -1,5 +1,5 @@
 {
-  "name": "NBAPlayersStats",
+  "name": "nba-players-stats",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -16,11 +16,9 @@
     "vue": "^2.6.11",
     "vue-apexcharts": "^1.6.2",
     "vue-plotly": "^1.1.0",
-    "vue-router": "^3.2.0",
-    "vuex": "^3.4.0"
+    "vue-router": "^3.2.0"
   },
   "devDependencies": {
-    "@fortawesome/fontawesome-free": "^5.15.4",
     "@vue/cli-plugin-babel": "~4.5.0",
     "@vue/cli-plugin-eslint": "~4.5.0",
     "@vue/cli-plugin-router": "~4.5.0",

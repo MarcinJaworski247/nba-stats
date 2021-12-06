@@ -60,6 +60,7 @@ import {
   DxSource,
 } from "devextreme-vue/vector-map";
 
+// service
 import { getTeamWins } from "@/services/dataService";
 
 export default {
@@ -76,9 +77,6 @@ export default {
     return {
       usa: mapsData.usa,
       bounds: [-94, 50, -100, 23],
-      headers: ["Drużyna", "Konferencja", "Ilość wygranych"],
-      data: [],
-      chartData: [],
       teamsData: {
         type: "FeatureCollection",
         features: [
@@ -698,36 +696,6 @@ export default {
   },
   mounted() {
     this.markers.features = getTeamWins();
-
-    for (const item of this.markers.features) {
-      this.data.push([
-        item.properties.name,
-        item.properties.conference,
-        item.properties.value,
-      ]);
-    }
-
-    this.data.sort((a, b) => {
-      if (a[2] < b[2]) return -1;
-      if (a[2] > b[2]) return 1;
-      return 0;
-    });
-
-    let eastWins = 0;
-    let westWins = 0;
-    for (const item of this.data) {
-      if (item[1] === "wschodnia") {
-        eastWins += item[2];
-      }
-      if (item[1] === "zachodnia") {
-        westWins += item[2];
-      }
-    }
-
-    this.chartData.push(
-      { conference: "Konferencja wschodnia", wins: eastWins },
-      { conference: "Kofnerecja zachodnia", wins: westWins }
-    );
   },
 };
 </script>

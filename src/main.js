@@ -8,10 +8,6 @@ Vue.use(VueApexCharts);
 // import ApexChart component globally
 Vue.component("apexchart", VueApexCharts);
 
-//FontAwesome
-import "@fortawesome/fontawesome-free/css/all.css";
-import "@fortawesome/fontawesome-free/js/all.js";
-
 // devextreme styles
 import "devextreme/dist/css/dx.common.css";
 import "devextreme/dist/css/dx.light.css";
