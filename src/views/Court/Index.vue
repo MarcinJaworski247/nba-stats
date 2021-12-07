@@ -1,6 +1,8 @@
 <template>
   <div>
-    <app-header text="Najlepsi strzelcy oraz ligowe średnie według pozycji" />
+    <app-header
+      text="Średnie zbiórek według pozycji oraz liderzy w tej kategorii"
+    />
     <div class="mt-5">
       <court />
     </div>
@@ -122,9 +124,9 @@
         class="mb-2"
       />
       <div class="caption mb-2">
-        Wsp. korelacji pomiędzy średnią punktów a pozycją na boisku:
-        <strong>{{ pos_ppg_corr }}</strong> ({{
-          getCorrInterpretation(pos_ppg_corr)
+        Wsp. korelacji pomiędzy średnią zbiórek a pozycją na boisku:
+        <strong>{{ pos_rb_corr }}</strong> ({{
+          getCorrInterpretation(pos_rb_corr)
         }})
       </div>
     </div>
@@ -143,7 +145,7 @@ import * as ss from "simple-statistics";
 
 // service
 import {
-  getAllPlayersPpg,
+  getAllPlayersRb,
   getAllPlayersPositions,
 } from "@/services/dataService";
 
@@ -163,14 +165,15 @@ export default {
   data() {
     return {
       data: [],
-      pos_ppg_corr: null,
+      pos_rb_corr: null,
       getCorrInterpretation,
     };
   },
   methods: {
-    calculatePpgStats() {
-      const allStats = getAllPlayersPpg();
-      const attribute = "PPG";
+    calculateRbStats() {
+      const allStats = getAllPlayersRb();
+      console.log(allStats);
+      const attribute = "RB";
       const average = ss.average(allStats).toFixed(2);
       const mean = ss.mean(allStats).toFixed(2);
       const mode = ss.mode(allStats).toFixed(2);
@@ -218,14 +221,14 @@ export default {
       });
     },
     calculatePearsonCorrelation() {
-      this.pos_ppg_corr = pearsonCorrelation(
-        getAllPlayersPpg(),
+      this.pos_rb_corr = pearsonCorrelation(
+        getAllPlayersRb(),
         getAllPlayersPositions()
       );
     },
   },
   mounted() {
-    this.calculatePpgStats();
+    this.calculateRbStats();
     this.calculatePearsonCorrelation();
   },
 };

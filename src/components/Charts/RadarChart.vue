@@ -11,7 +11,7 @@
 </template>
 <script>
 // service
-import { getPtsByPos } from "@/services/dataService";
+import { getAvgRbByPos } from "@/services/dataService";
 
 export default {
   name: "RadarChart",
@@ -19,7 +19,7 @@ export default {
     return {
       series: [
         {
-          name: "Average points",
+          name: "Avg RB",
           data: [],
         },
       ],
@@ -61,14 +61,14 @@ export default {
             borderRadius: 2,
           },
           formatter: function (val) {
-            return `${val} PPG`;
+            return `${val} RB`;
           },
         },
       },
     };
   },
   mounted() {
-    const data = getPtsByPos();
+    const data = getAvgRbByPos();
 
     this.series[0].data.push(data.pg.toFixed(2));
     this.series[0].data.push(data.sg.toFixed(2));

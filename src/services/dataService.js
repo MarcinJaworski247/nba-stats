@@ -1,7 +1,47 @@
 import data from "@/assets/data/data.json";
 import standings from "@/assets/data/standings.json";
 
-export function getPtsByPos() {
+//! deprecated
+// export function getPtsByPos() {
+//   const pg = [];
+//   const sg = [];
+//   const sf = [];
+//   const pf = [];
+//   const c = [];
+
+//   for (let i = 0; i < data.length; i++) {
+//     if (data[i].Pos === "PG") {
+//       pg.push(data[i].PTS);
+//     } else if (data[i].Pos === "SG") {
+//       sg.push(data[i].PTS);
+//     } else if (data[i].Pos === "SF") {
+//       sf.push(data[i].PTS);
+//     } else if (data[i].Pos === "PF") {
+//       pf.push(data[i].PTS);
+//     } else if (data[i].Pos === "C") {
+//       c.push(data[i].PTS);
+//     }
+//   }
+
+//   const pgSum = pg.reduce((a, b) => a + b, 0);
+//   const pgAvg = pgSum / pg.length || 0;
+
+//   const sgSum = sg.reduce((a, b) => a + b, 0);
+//   const sgAvg = sgSum / sg.length || 0;
+
+//   const sfSum = sf.reduce((a, b) => a + b, 0);
+//   const sfAvg = sfSum / sf.length || 0;
+
+//   const pfSum = pf.reduce((a, b) => a + b, 0);
+//   const pfAvg = pfSum / pf.length || 0;
+
+//   const cSum = c.reduce((a, b) => a + b, 0);
+//   const cAvg = cSum / c.length || 0;
+
+//   return { pg: pgAvg, sg: sgAvg, sf: sfAvg, pf: pfAvg, c: cAvg };
+// }
+
+export function getAvgRbByPos() {
   const pg = [];
   const sg = [];
   const sf = [];
@@ -10,15 +50,15 @@ export function getPtsByPos() {
 
   for (let i = 0; i < data.length; i++) {
     if (data[i].Pos === "PG") {
-      pg.push(data[i].PTS);
+      pg.push(data[i].TRB);
     } else if (data[i].Pos === "SG") {
-      sg.push(data[i].PTS);
+      sg.push(data[i].TRB);
     } else if (data[i].Pos === "SF") {
-      sf.push(data[i].PTS);
+      sf.push(data[i].TRB);
     } else if (data[i].Pos === "PF") {
-      pf.push(data[i].PTS);
+      pf.push(data[i].TRB);
     } else if (data[i].Pos === "C") {
-      c.push(data[i].PTS);
+      c.push(data[i].TRB);
     }
   }
 
@@ -82,62 +122,125 @@ export function getMinsByAgeRange() {
 export function getTeamWins() {
   return standings;
 }
+//! deprecated
+// export function getLeagueLeaders() {
+//   const pg = {
+//     avg: 0,
+//     name: null,
+//     team: null,
+//     image: "https://cdn.nba.com/headshots/nba/latest/1040x760/201939.png",
+//   };
+//   const sg = {
+//     avg: 0,
+//     name: null,
+//     team: null,
+//     image: "https://cdn.nba.com/headshots/nba/latest/1040x760/203078.png",
+//   };
+//   const sf = {
+//     avg: 0,
+//     name: null,
+//     team: null,
+//     image: "https://cdn.nba.com/headshots/nba/latest/1040x760/202695.png",
+//   };
+//   const pf = {
+//     avg: 0,
+//     name: null,
+//     team: null,
+//     image: "https://cdn.nba.com/headshots/nba/latest/1040x760/201142.png",
+//   };
+//   const c = {
+//     avg: 0,
+//     name: null,
+//     team: null,
+//     image: "https://cdn.nba.com/headshots/nba/latest/1040x760/203954.png",
+//   };
 
-export function getLeagueLeaders() {
+//   for (let i = 0; i < data.length; i++) {
+//     if (data[i].Pos === "PG" && data[i].PTS > pg.avg) {
+//       pg.avg = data[i].PTS;
+//       pg.name = data[i].Player;
+//       pg.team = data[i].Tm;
+//     }
+//     if (data[i].Pos === "SG" && data[i].PTS > sg.avg) {
+//       sg.avg = data[i].PTS;
+//       sg.name = data[i].Player;
+//       sg.team = data[i].Tm;
+//     }
+//     if (data[i].Pos === "SF" && data[i].PTS > sf.avg) {
+//       sf.avg = data[i].PTS;
+//       sf.name = data[i].Player;
+//       sf.team = data[i].Tm;
+//     }
+//     if (data[i].Pos === "PF" && data[i].PTS > pf.avg) {
+//       pf.avg = data[i].PTS;
+//       pf.name = data[i].Player;
+//       pf.team = data[i].Tm;
+//     }
+//     if (data[i].Pos === "C" && data[i].PTS > c.avg) {
+//       c.avg = data[i].PTS;
+//       c.name = data[i].Player;
+//       c.team = data[i].Tm;
+//     }
+//   }
+
+//   return { pg, sg, sf, pf, c };
+// }
+
+export function getRbLeagueLeaders() {
   const pg = {
     avg: 0,
     name: null,
     team: null,
-    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/201939.png",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/201566.png",
   };
   const sg = {
     avg: 0,
     name: null,
     team: null,
-    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/203078.png",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/201935.png",
   };
   const sf = {
     avg: 0,
     name: null,
     team: null,
-    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/202695.png",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/202710.png",
   };
   const pf = {
     avg: 0,
     name: null,
     team: null,
-    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/201142.png",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/1627734.png",
   };
   const c = {
     avg: 0,
     name: null,
     team: null,
-    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/203954.png",
+    image: "https://cdn.nba.com/headshots/nba/latest/1040x760/203991.png",
   };
 
   for (let i = 0; i < data.length; i++) {
-    if (data[i].Pos === "PG" && data[i].PTS > pg.avg) {
-      pg.avg = data[i].PTS;
+    if (data[i].Pos === "PG" && data[i].TRB > pg.avg) {
+      pg.avg = data[i].TRB;
       pg.name = data[i].Player;
       pg.team = data[i].Tm;
     }
-    if (data[i].Pos === "SG" && data[i].PTS > sg.avg) {
-      sg.avg = data[i].PTS;
+    if (data[i].Pos === "SG" && data[i].TRB > sg.avg) {
+      sg.avg = data[i].TRB;
       sg.name = data[i].Player;
       sg.team = data[i].Tm;
     }
-    if (data[i].Pos === "SF" && data[i].PTS > sf.avg) {
-      sf.avg = data[i].PTS;
+    if (data[i].Pos === "SF" && data[i].TRB > sf.avg) {
+      sf.avg = data[i].TRB;
       sf.name = data[i].Player;
       sf.team = data[i].Tm;
     }
-    if (data[i].Pos === "PF" && data[i].PTS > pf.avg) {
-      pf.avg = data[i].PTS;
+    if (data[i].Pos === "PF" && data[i].TRB > pf.avg) {
+      pf.avg = data[i].TRB;
       pf.name = data[i].Player;
       pf.team = data[i].Tm;
     }
-    if (data[i].Pos === "C" && data[i].PTS > c.avg) {
-      c.avg = data[i].PTS;
+    if (data[i].Pos === "C" && data[i].TRB > c.avg) {
+      c.avg = data[i].TRB;
       c.name = data[i].Player;
       c.team = data[i].Tm;
     }
@@ -150,6 +253,14 @@ export function getAllPlayersPpg() {
   let res = [];
   for (const item of data) {
     res.push(item.PTS);
+  }
+  return res;
+}
+
+export function getAllPlayersRb() {
+  let res = [];
+  for (const item of data) {
+    res.push(item.TRB);
   }
   return res;
 }

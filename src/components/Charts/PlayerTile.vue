@@ -5,7 +5,7 @@
     </div>
     <div class="name">
       {{ name }},
-      <div class="stats">{{ avg.toFixed(2) }}PPG</div>
+      <div class="stats">{{ avg.toFixed(2) }}RB</div>
     </div>
   </div>
 </template>

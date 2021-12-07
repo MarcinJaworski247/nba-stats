@@ -65,7 +65,7 @@ import PlayerTile from "@/components/Charts/PlayerTile";
 import RadarChart from "@/components/Charts/RadarChart";
 
 // service
-import { getLeagueLeaders } from "@/services/dataService";
+import { getRbLeagueLeaders } from "@/services/dataService";
 
 export default {
   name: "Court",
@@ -79,7 +79,7 @@ export default {
     };
   },
   mounted() {
-    this.stats = getLeagueLeaders();
+    this.stats = getRbLeagueLeaders();
   },
 };
 </script>
