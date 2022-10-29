@@ -9,7 +9,8 @@
 a {
   text-decoration: none;
   color: #808080;
-  font-size: 20px;
+  font-size: 22px;
+  font-weight: 500;
   transition: 0.3s ease;
 
   &:hover {
@@ -28,5 +29,6 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #fff4e6;
 }
 </style>

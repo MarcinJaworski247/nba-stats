@@ -1,5 +1,5 @@
 <template>
-  <div class="chart-wrapper">
+  <div class="chart-wrapper court-wrapper">
     <div class="court">
       <player-tile
         :name="stats.pg.name"
@@ -62,10 +62,14 @@ export default {
 };
 </script>
 <style scoped>
+.court-wrapper {
+  background-color: #fff;
+  border: 1px solid #cacaca;
+}
 .court {
   background-image: url("../../assets/images/courts/court.svg");
   width: 800px;
-  height: 500px;
+  height: 600px;
   background-repeat: no-repeat;
   background-size: contain;
   display: grid;

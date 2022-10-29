@@ -29,13 +29,12 @@ export default {
   width: 100%;
   height: 60px;
   margin-bottom: 32px;
-  border-bottom: 2px solid orange;
   display: flex;
   justify-content: center;
   position: fixed;
   top: 0;
   overflow: hidden;
   z-index: 10000;
-  background: white;
+  background: #fff4e6;
 }
 </style>

@@ -6,7 +6,7 @@
     <div class="mt-5">
       <court />
     </div>
-    <div class="mt-15">
+    <div class="mt-10">
       <app-secondary-header text="Measures of distribution" class="mb-2" />
       <measures-data-grid :data="data" />
     </div>

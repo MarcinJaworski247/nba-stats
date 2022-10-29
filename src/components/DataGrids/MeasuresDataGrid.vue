@@ -4,6 +4,7 @@
     :show-borders="true"
     :word-wrap-enabled="true"
     :allow-column-resizing="true"
+    :row-alternation-enabled="true"
   >
     <dx-column
       :allow-sorting="false"

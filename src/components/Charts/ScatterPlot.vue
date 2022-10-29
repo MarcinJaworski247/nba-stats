@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="chart-wrapper">
+    <div class="chart-wrapper scatter-wrapper">
       <apexchart
         type="bubble"
         :height="650"
@@ -91,3 +91,9 @@ export default {
   },
 };
 </script>
+<style scoped>
+.scatter-wrapper {
+  background-color: #fff;
+  border: 1px solid #cacaca;
+}
+</style>
