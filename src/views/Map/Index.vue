@@ -1,163 +1,47 @@
 <template>
   <div>
-    <app-primary-header
-      text="Ilość wygranych meczów drużyn i ich przynależność do konferencji"
-    />
+    <app-primary-header text="Won games by team and conference" />
     <div class="legend">
       <div class="color blue"></div>
-      Konferencja wschodnia
+      Eastern conference
     </div>
     <div class="legend">
       <div class="color red"></div>
-      Konferencja zachodnia
+      Western conference
     </div>
     <div>
       <Map />
     </div>
     <div class="mt-3">
-      <app-secondary-header text="Miary rozkładu" class="mb-2" />
-      <dx-data-grid
-        :data-source="data"
-        :show-borders="true"
-        :wordWrapEnabled="true"
-      >
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Atrybut"
-          data-field="attribute"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Ilość rekordów"
-          data-field="quantity"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Średnia arytmetyczna"
-          data-field="average"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Średnia geometryczna"
-          data-field="geometricMean"
-        />
-        <!-- <dx-column caption="Średnia harmoniczna" data-field="quantity" /> -->
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Średnia kwadratowa"
-          data-field="rootMeanSquare"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Mediana"
-          data-field="mean"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Mode"
-          data-field="mode"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Kwantyl .25"
-          data-field="q1"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Kwantyl .75"
-          data-field="q3"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Odchylenie standardowe"
-          data-field="stdv"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Wariancja"
-          data-field="variance"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Rozstęp międzykwartylowy"
-          data-field="iqr"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Odchylenie przeciętne"
-          data-field="meanAbsoluteDeviation"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Odchylenie kwartylne"
-          data-field="quarterDeviation"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Współczynnik zmienności"
-          data-field="coefficientOfVariation"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Kurtoza"
-          data-field="kurtosis"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Współczynnik skośności"
-          data-field="skewness"
-        />
-      </dx-data-grid>
+      <app-secondary-header text="Measures of distribution" class="mb-2" />
+      <measures-data-grid :data="data" />
     </div>
     <div class="mt-3">
-      <app-header
-        text="Współczynnik korelacji liniowej Pearsona"
+      <app-secondary-header
+        text="Pearson's linear correlation coefficient"
         class="mb-2"
       />
       <div class="caption mb-2">
-        Wsp. korelacji pomiędzy ilością wygranych meczów a przynależnością do
-        danej konferencji:
-        <strong>{{ wins_conf_corr }}</strong> ({{
-          getCorrInterpretation(wins_conf_corr)
-        }})
+        Correlation coefficient between amount of won games and belonging to
+        conference:
+        <strong>{{ wins_conf_corr }}</strong>
+        ({{ getCorrInterpretation(wins_conf_corr) }})
       </div>
     </div>
   </div>
 </template>
 <script>
-// components
 import Map from "@/components/Charts/Map";
 import AppPrimaryHeader from "@/components/App/AppPrimaryHeader";
 import AppSecondaryHeader from "@/components/App/AppSecondaryHeader";
+import MeasuresDataGrid from "@/components/DataGrids/MeasuresDataGrid";
 
-// DevExtreme
-import { DxDataGrid, DxColumn } from "devextreme-vue/data-grid";
-
-// service
 import { getTeamsWins, getAllTeamsConf } from "@/services/dataService";
 import {
   getCorrInterpretation,
   pearsonCorrelation,
 } from "@/services/mathService";
 
-// simple satistics
 import * as ss from "simple-statistics";
 
 export default {
@@ -166,8 +50,7 @@ export default {
     Map,
     AppPrimaryHeader,
     AppSecondaryHeader,
-    DxDataGrid,
-    DxColumn,
+    MeasuresDataGrid,
   },
   data() {
     return {
@@ -179,7 +62,7 @@ export default {
   methods: {
     calculateWinsStats() {
       const allStats = getTeamsWins();
-      const attribute = "Wygrane mecze";
+      const attribute = "Won games";
       const average = ss.average(allStats).toFixed(2);
       const mean = ss.mean(allStats).toFixed(2);
       const mode = ss.mode(allStats).toFixed(2);
@@ -200,7 +83,6 @@ export default {
         .toFixed(2);
 
       const kurtosis = ss.sampleKurtosis(allStats).toFixed(2);
-      // const giniCoefficient
       const skewness = ss.sampleSkewness(allStats).toFixed(2);
 
       const quantity = allStats.length;

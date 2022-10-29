@@ -49,7 +49,6 @@
   </div>
 </template>
 <script>
-// devextreme map
 import * as mapsData from "devextreme/dist/js/vectormap-data/usa.js";
 import {
   DxVectorMap,
@@ -60,7 +59,6 @@ import {
   DxSource,
 } from "devextreme-vue/vector-map";
 
-// service
 import { getTeamWins } from "@/services/dataService";
 
 export default {
