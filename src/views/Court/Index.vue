@@ -1,149 +1,36 @@
 <template>
   <div>
-    <app-header
-      text="Średnie zbiórek według pozycji oraz liderzy w tej kategorii"
+    <app-primary-header
+      text="Rebounds averages by position and league leaders"
     />
     <div class="mt-5">
       <court />
     </div>
     <div class="mt-15">
-      <app-header text="Miary rozkładu" class="mb-2" />
-      <dx-data-grid
-        :data-source="data"
-        :show-borders="true"
-        :wordWrapEnabled="true"
-      >
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Atrybut"
-          data-field="attribute"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Ilość rekordów"
-          data-field="quantity"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Średnia arytmetyczna"
-          data-field="average"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Średnia geometryczna"
-          data-field="geometricMean"
-        />
-        <!-- <dx-column caption="Średnia harmoniczna" data-field="quantity" /> -->
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Średnia kwadratowa"
-          data-field="rootMeanSquare"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Mediana"
-          data-field="mean"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Mode"
-          data-field="mode"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Kwantyl .25"
-          data-field="q1"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Kwantyl .75"
-          data-field="q3"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Odchylenie standardowe"
-          data-field="stdv"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Wariancja"
-          data-field="variance"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Rozstęp międzykwartylowy"
-          data-field="iqr"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Odchylenie przeciętne"
-          data-field="meanAbsoluteDeviation"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Odchylenie kwartylne"
-          data-field="quarterDeviation"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Współczynnik zmienności"
-          data-field="coefficientOfVariation"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Kurtoza"
-          data-field="kurtosis"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Współczynnik skośności"
-          data-field="skewness"
-        />
-      </dx-data-grid>
+      <app-secondary-header text="Measures of distribution" class="mb-2" />
+      <measures-data-grid :data="data" />
     </div>
     <div class="mt-3">
-      <app-header
-        text="Współczynnik korelacji liniowej Pearsona"
+      <app-secondary-header
+        text="Pearson's linear correlation coefficient"
         class="mb-2"
       />
       <div class="caption mb-2">
-        Wsp. korelacji pomiędzy średnią zbiórek a pozycją na boisku:
-        <strong>{{ pos_rb_corr }}</strong> ({{
-          getCorrInterpretation(pos_rb_corr)
-        }})
+        <span>
+          Correlation coefficient between rebounds average and position:
+        </span>
+        <strong>{{ pos_rb_corr }}</strong>
+        ({{ getCorrInterpretation(pos_rb_corr) }})
       </div>
     </div>
   </div>
 </template>
 <script>
-// components
 import Court from "@/components/Charts/Court";
-import AppHeader from "@/components/App/AppHeader";
-
-// DevExtreme
-import { DxDataGrid, DxColumn } from "devextreme-vue/data-grid";
-
-// simple satistics
+import AppPrimaryHeader from "@/components/App/AppPrimaryHeader";
+import AppSecondaryHeader from "@/components/App/AppSecondaryHeader";
+import MeasuresDataGrid from "@/components/DataGrids/MeasuresDataGrid";
 import * as ss from "simple-statistics";
-
-// service
 import {
   getAllPlayersRb,
   getAllPlayersPositions,
@@ -158,18 +45,24 @@ export default {
   name: "CourtIndex",
   components: {
     Court,
-    AppHeader,
-    DxDataGrid,
-    DxColumn,
+    AppPrimaryHeader,
+    AppSecondaryHeader,
+    MeasuresDataGrid,
   },
   data() {
     return {
-      data: [],
       pos_rb_corr: null,
+      data: [],
       getCorrInterpretation,
     };
   },
   methods: {
+    calculatePearsonCorrelation() {
+      this.pos_rb_corr = pearsonCorrelation(
+        getAllPlayersRb(),
+        getAllPlayersPositions()
+      );
+    },
     calculateRbStats() {
       const allStats = getAllPlayersRb();
       const attribute = "RB";
@@ -193,7 +86,6 @@ export default {
         .toFixed(2);
 
       const kurtosis = ss.sampleKurtosis(allStats).toFixed(2);
-      // const giniCoefficient
       const skewness = ss.sampleSkewness(allStats).toFixed(2);
 
       const quantity = allStats.length;
@@ -218,16 +110,10 @@ export default {
         quantity: quantity,
       });
     },
-    calculatePearsonCorrelation() {
-      this.pos_rb_corr = pearsonCorrelation(
-        getAllPlayersRb(),
-        getAllPlayersPositions()
-      );
-    },
   },
   mounted() {
-    this.calculateRbStats();
     this.calculatePearsonCorrelation();
+    this.calculateRbStats();
   },
 };
 </script>

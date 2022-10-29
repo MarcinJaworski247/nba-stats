@@ -41,11 +41,8 @@
   </div>
 </template>
 <script>
-// components
 import PlayerTile from "@/components/Charts/PlayerTile";
 import RadarChart from "@/components/Charts/RadarChart";
-
-// service
 import { getRbLeagueLeaders } from "@/services/dataService";
 
 export default {

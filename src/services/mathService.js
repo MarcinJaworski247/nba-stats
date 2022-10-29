@@ -23,9 +23,10 @@ export function pearsonCorrelation(x, y) {
 }
 
 export function getCorrInterpretation(corr) {
-  if (Math.abs(corr) <= 0.3) return "słaba korelacja";
+  if (Math.abs(corr) <= 0.3) return "Poor correlation";
   if (Math.abs(corr) > 0.3 && Math.abs(corr) <= 0.5)
-    return "korelacja umiarkowana";
-  if (Math.abs(corr) > 0.5 && Math.abs(corr) <= 0.7) return "korelacja silna";
-  if (Math.abs(corr) > 0.7) return "korelacja bardzo silna";
+    return "Moderate correlation";
+  if (Math.abs(corr) > 0.5 && Math.abs(corr) <= 0.7)
+    return "Strong correlation";
+  if (Math.abs(corr) > 0.7) return "Very strong correlation";
 }

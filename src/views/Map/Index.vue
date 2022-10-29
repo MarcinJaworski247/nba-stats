@@ -1,6 +1,6 @@
 <template>
   <div>
-    <app-header
+    <app-primary-header
       text="Ilość wygranych meczów drużyn i ich przynależność do konferencji"
     />
     <div class="legend">
@@ -15,7 +15,7 @@
       <Map />
     </div>
     <div class="mt-3">
-      <app-header text="Miary rozkładu" class="mb-2" />
+      <app-secondary-header text="Miary rozkładu" class="mb-2" />
       <dx-data-grid
         :data-source="data"
         :show-borders="true"
@@ -144,7 +144,8 @@
 <script>
 // components
 import Map from "@/components/Charts/Map";
-import AppHeader from "@/components/App/AppHeader";
+import AppPrimaryHeader from "@/components/App/AppPrimaryHeader";
+import AppSecondaryHeader from "@/components/App/AppSecondaryHeader";
 
 // DevExtreme
 import { DxDataGrid, DxColumn } from "devextreme-vue/data-grid";
@@ -163,7 +164,8 @@ export default {
   name: "MapIndex",
   components: {
     Map,
-    AppHeader,
+    AppPrimaryHeader,
+    AppSecondaryHeader,
     DxDataGrid,
     DxColumn,
   },

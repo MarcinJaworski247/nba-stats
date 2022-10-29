@@ -1,11 +1,11 @@
 <template>
   <div>
-    <app-header
+    <app-primary-header
       text="Średnia ilość minut spędzonych na boisku i średnia punktów według przedziału wieku"
     />
     <scatter-plot />
     <div class="mt-3">
-      <app-header text="Miary rozkładu" class="mb-2" />
+      <app-secondary-header text="Miary rozkładu" class="mb-2" />
       <dx-data-grid
         :data-source="data"
         :show-borders="true"
@@ -146,7 +146,8 @@
 <script>
 // components
 import ScatterPlot from "@/components/Charts/ScatterPlot";
-import AppHeader from "@/components/App/AppHeader";
+import AppPrimaryHeader from "@/components/App/AppPrimaryHeader";
+import AppSecondaryHeader from "@/components/App/AppSecondaryHeader";
 
 // DevExtreme
 import { DxDataGrid, DxColumn } from "devextreme-vue/data-grid";
@@ -170,7 +171,8 @@ export default {
   name: "ScatterPlotIndex",
   components: {
     ScatterPlot,
-    AppHeader,
+    AppPrimaryHeader,
+    AppSecondaryHeader,
     DxDataGrid,
     DxColumn,
   },
