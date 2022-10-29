@@ -172,13 +172,11 @@ export default {
   methods: {
     calculateRbStats() {
       const allStats = getAllPlayersRb();
-      console.log(allStats);
       const attribute = "RB";
       const average = ss.average(allStats).toFixed(2);
       const mean = ss.mean(allStats).toFixed(2);
       const mode = ss.mode(allStats).toFixed(2);
       const geometricMean = ss.geometricMean(allStats);
-      // const harmonicMean = ss.harmonicMean(allStats);
       const rootMeanSquare = ss.rootMeanSquare(allStats).toFixed(2);
       const stdv = ss.standardDeviation(allStats).toFixed(2);
       const q1 = ss.quantile(allStats, 0.25).toFixed(2);

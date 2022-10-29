@@ -7,7 +7,6 @@
         :width="1000"
         :options="chartOptions"
         :series="series"
-        v-if="!isLoading && series.length === 4"
       />
     </div>
   </div>

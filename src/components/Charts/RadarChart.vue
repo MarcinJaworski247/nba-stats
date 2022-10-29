@@ -1,16 +1,15 @@
 <template>
   <apexchart
-    class="chart"
     type="radar"
-    :height="450"
-    :width="450"
+    :height="400"
+    :width="400"
     :options="chartOptions"
     :series="series"
     v-if="series[0].data.length === 5"
+    class="chart"
   />
 </template>
 <script>
-// service
 import { getAvgRbByPos } from "@/services/dataService";
 
 export default {
@@ -32,13 +31,7 @@ export default {
           },
         },
         xaxis: {
-          categories: [
-            "Point Guards",
-            "Shooting Guards",
-            "Power Forwards",
-            "Centers",
-            "Small Forwards",
-          ],
+          categories: ["PG", "SG", "PF", "C", "SF"],
         },
         stroke: {
           width: 2,
@@ -61,7 +54,7 @@ export default {
             borderRadius: 2,
           },
           formatter: function (val) {
-            return `${val} RB`;
+            return `${val} RPG`;
           },
         },
       },
@@ -78,3 +71,8 @@ export default {
   },
 };
 </script>
+<style scoped>
+.chart {
+  z-index: 9999;
+}
+</style>

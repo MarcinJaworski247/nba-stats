@@ -4,8 +4,8 @@
       <img :src="image" alt="" class="avatar" loading="lazy" />
     </div>
     <div class="name">
-      {{ name }},
-      <div class="stats">{{ avg.toFixed(2) }}RB</div>
+      {{ name }}
+      <div class="stats">{{ avg.toFixed(2) }} RPG</div>
     </div>
   </div>
 </template>
@@ -49,9 +49,10 @@ export default {
   justify-content: center;
   align-items: center;
   background: #fff;
-  cursor: pointer;
   position: relative;
   overflow: hidden;
+  z-index: 999;
+  transition: 0.3s ease;
 }
 .tile:hover {
   border-color: orange;

@@ -230,7 +230,7 @@ export default {
               coordinates: [-122.245003, 44.653501],
             },
             properties: {
-              url: "https://upload.wikimedia.org/wikipedia/commons/b/bb/TrailBlazers.svg.png",
+              url: "https://upload.wikimedia.org/wikipedia/en/thumb/2/21/Portland_Trail_Blazers_logo.svg/1024px-Portland_Trail_Blazers_logo.svg.png",
               text: "Portland Trail Blazers",
             },
           },
