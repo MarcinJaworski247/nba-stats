@@ -76,15 +76,12 @@ export default {
       const meanAbsoluteDeviation = ss
         .medianAbsoluteDeviation(allStats)
         .toFixed(2);
-
       const quarterDeviation = (iqr / 2).toFixed(2);
       const coefficientOfVariation = ss
         .coefficientOfVariation(allStats)
         .toFixed(2);
-
       const kurtosis = ss.sampleKurtosis(allStats).toFixed(2);
       const skewness = ss.sampleSkewness(allStats).toFixed(2);
-
       const quantity = allStats.length;
 
       this.data.push({

@@ -1,161 +1,44 @@
 <template>
   <div>
     <app-primary-header
-      text="Średnia ilość minut spędzonych na boisku i średnia punktów według przedziału wieku"
+      text="Average minutes spent on court and points average by age range"
     />
     <scatter-plot />
     <div class="mt-3">
-      <app-secondary-header text="Miary rozkładu" class="mb-2" />
-      <dx-data-grid
-        :data-source="data"
-        :show-borders="true"
-        :wordWrapEnabled="true"
-        :hover-state-enabled="true"
-      >
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Atrybut"
-          data-field="attribute"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Ilość rekordów"
-          data-field="quantity"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Średnia arytmetyczna"
-          data-field="average"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Średnia geometryczna"
-          data-field="geometricMean"
-        />
-        <!-- <dx-column caption="Średnia harmoniczna" data-field="quantity" /> -->
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Średnia kwadratowa"
-          data-field="rootMeanSquare"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Mediana"
-          data-field="mean"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Mode"
-          data-field="mode"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Kwantyl .25"
-          data-field="q1"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Kwantyl .75"
-          data-field="q3"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Odchylenie standardowe"
-          data-field="stdv"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Wariancja"
-          data-field="variance"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Rozstęp międzykwartylowy"
-          data-field="iqr"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Odchylenie przeciętne"
-          data-field="meanAbsoluteDeviation"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Odchylenie kwartylne"
-          data-field="quarterDeviation"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Współczynnik zmienności"
-          data-field="coefficientOfVariation"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Kurtoza"
-          data-field="kurtosis"
-        />
-        <dx-column
-          :allow-sorting="false"
-          alignment="center"
-          caption="Współczynnik skośności"
-          data-field="skewness"
-        />
-      </dx-data-grid>
+      <app-secondary-header text="Measures of distribution" class="mb-2" />
+      <measures-data-grid :data="data" />
     </div>
     <div class="mt-3">
-      <app-header
-        text="Współczynniki korelacji liniowej Pearsona"
+      <app-secondary-header
+        text="Pearson's linear correlation coefficients"
         class="mb-2"
       />
       <div class="caption mb-2">
-        Wsp. korelacji pomiędzy średnią minut na boisku a średnią punktów:
-        <strong>{{ mpg_ppg_corr }}</strong> ({{
-          getCorrInterpretation(mpg_ppg_corr)
-        }})
+        Correlation coefficient between average minutes and points:
+        <strong>{{ mpg_ppg_corr }}</strong>
+        ({{ getCorrInterpretation(mpg_ppg_corr) }})
       </div>
       <div class="caption mb-2">
-        Wsp. korelacji pomiędzy średnią minut na boisku a wiekiem:
-        <strong>{{ mpg_age_corr }}</strong> ({{
-          getCorrInterpretation(mpg_age_corr)
-        }})
+        Correlation coefficient between average minutes and age:
+        <strong>{{ mpg_age_corr }}</strong>
+        ({{ getCorrInterpretation(mpg_age_corr) }})
       </div>
       <div class="caption mb-2">
-        Wsp. korelacji pomiędzy średnią punktów a wiekiem:
-        <strong>{{ ppg_age_corr }}</strong> ({{
-          getCorrInterpretation(ppg_age_corr)
-        }})
+        Correlation coefficient between average points and age:
+        <strong>{{ ppg_age_corr }}</strong>
+        ({{ getCorrInterpretation(ppg_age_corr) }})
       </div>
     </div>
   </div>
 </template>
 <script>
-// components
 import ScatterPlot from "@/components/Charts/ScatterPlot";
 import AppPrimaryHeader from "@/components/App/AppPrimaryHeader";
 import AppSecondaryHeader from "@/components/App/AppSecondaryHeader";
+import MeasuresDataGrid from "@/components/DataGrids/MeasuresDataGrid";
 
-// DevExtreme
-import { DxDataGrid, DxColumn } from "devextreme-vue/data-grid";
-
-// simple satistics
 import * as ss from "simple-statistics";
 
-// service
 import {
   getAllPlayersMpg,
   getAllPlayersPpg,
@@ -173,8 +56,7 @@ export default {
     ScatterPlot,
     AppPrimaryHeader,
     AppSecondaryHeader,
-    DxDataGrid,
-    DxColumn,
+    MeasuresDataGrid,
   },
   data() {
     return {
@@ -194,7 +76,6 @@ export default {
       const mean = ss.mean(allStats).toFixed(2);
       const mode = ss.mode(allStats).toFixed(2);
       const geometricMean = ss.geometricMean(allStats);
-      // const harmonicMean = ss.harmonicMean(allStats);
       const rootMeanSquare = ss.rootMeanSquare(allStats).toFixed(2);
       const stdv = ss.standardDeviation(allStats).toFixed(2);
       const q1 = ss.quantile(allStats, 0.25).toFixed(2);
@@ -204,16 +85,12 @@ export default {
       const meanAbsoluteDeviation = ss
         .medianAbsoluteDeviation(allStats)
         .toFixed(2);
-
       const quarterDeviation = (iqr / 2).toFixed(2);
       const coefficientOfVariation = ss
         .coefficientOfVariation(allStats)
         .toFixed(2);
-
       const kurtosis = ss.sampleKurtosis(allStats).toFixed(2);
-      // const giniCoefficient
       const skewness = ss.sampleSkewness(allStats).toFixed(2);
-
       const quantity = allStats.length;
 
       this.data.push({
@@ -243,7 +120,6 @@ export default {
       const mean = ss.mean(allStats).toFixed(2);
       const mode = ss.mode(allStats).toFixed(2);
       const geometricMean = ss.geometricMean(allStats);
-      // const harmonicMean = ss.harmonicMean(allStats);
       const rootMeanSquare = ss.rootMeanSquare(allStats).toFixed(2);
       const stdv = ss.standardDeviation(allStats).toFixed(2);
       const q1 = ss.quantile(allStats, 0.25).toFixed(2);
@@ -253,16 +129,12 @@ export default {
       const meanAbsoluteDeviation = ss
         .medianAbsoluteDeviation(allStats)
         .toFixed(2);
-
       const quarterDeviation = (iqr / 2).toFixed(2);
       const coefficientOfVariation = ss
         .coefficientOfVariation(allStats)
         .toFixed(2);
-
       const kurtosis = ss.sampleKurtosis(allStats).toFixed(2);
-      // const giniCoefficient
       const skewness = ss.sampleSkewness(allStats).toFixed(2);
-
       const quantity = allStats.length;
 
       this.data.push({
@@ -292,7 +164,6 @@ export default {
       const mean = ss.mean(allStats).toFixed(2);
       const mode = ss.mode(allStats).toFixed(2);
       const geometricMean = ss.geometricMean(allStats);
-      // const harmonicMean = ss.harmonicMean(allStats);
       const rootMeanSquare = ss.rootMeanSquare(allStats).toFixed(2);
       const stdv = ss.standardDeviation(allStats).toFixed(2);
       const q1 = ss.quantile(allStats, 0.25).toFixed(2);
@@ -302,16 +173,12 @@ export default {
       const meanAbsoluteDeviation = ss
         .medianAbsoluteDeviation(allStats)
         .toFixed(2);
-
       const quarterDeviation = (iqr / 2).toFixed(2);
       const coefficientOfVariation = ss
         .coefficientOfVariation(allStats)
         .toFixed(2);
-
       const kurtosis = ss.sampleKurtosis(allStats).toFixed(2);
-      // const giniCoefficient
       const skewness = ss.sampleSkewness(allStats).toFixed(2);
-
       const quantity = allStats.length;
 
       this.data.push({
