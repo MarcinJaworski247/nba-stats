@@ -1,19 +1,13 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-
-// import ApexCharts library
 import VueApexCharts from "vue-apexcharts";
-Vue.use(VueApexCharts);
-// import ApexChart component globally
-Vue.component("apexchart", VueApexCharts);
-
-// devextreme styles
 import "devextreme/dist/css/dx.common.css";
 import "devextreme/dist/css/dx.light.css";
-
-// my styles
 import "@/assets/styles/main.scss";
+
+Vue.use(VueApexCharts);
+Vue.component("apexchart", VueApexCharts);
 
 Vue.config.productionTip = false;
 
