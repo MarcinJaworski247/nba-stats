@@ -7,3 +7,5 @@ Visualization of multidimensional data - NBA stats from season 2020/21.
 - vue-apexcharts
 - DevExtreme
 - simple-statistics
+
+Demo: https://marcinjaworski247.github.io/nba-stats
